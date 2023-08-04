@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import RandomImageCarousel from './randomImageCarousel';
 import FavoriteButton from './favoriteButton';
-// import Login from './login'; // Import the Login component
 
 const genreMapping = {
   1: "Personal Growth",
@@ -74,9 +74,9 @@ const Home = () => {
   }
 
   return (
+
     <>
-      {/* {isLoggedIn === 'signUpPhase' && <Login onLogin={() => setIsLoggedIn('startPhase')} />}
-      {isLoggedIn === 'startPhase' && ( */}
+             <RandomImageCarousel />
         <div className="container">
           <h2>All Shows</h2>
           <div className="row mb-3">
@@ -128,7 +128,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-      {/* )} */}
+     
     </>
   );
 };
