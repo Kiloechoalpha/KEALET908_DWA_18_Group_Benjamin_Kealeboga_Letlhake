@@ -1,5 +1,5 @@
-
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const SearchFilter = ({ searchTerm }) => {
   const [shows, setShows] = useState([]);
@@ -56,6 +56,10 @@ const SearchFilter = ({ searchTerm }) => {
       </div>
     </div>
   );
+};
+
+SearchFilter.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
 };
 
 export default SearchFilter;

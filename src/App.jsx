@@ -1,4 +1,3 @@
-import React from 'react';
 import './styles.css';
 import Navbar from '../components/navbar';
 import Home from '../components/home';
@@ -9,7 +8,7 @@ import Login from '../components/login';
 import SeasonList from '../components/seasonList';
 import AudioPlayer from '../components/audioPlayer';
 import LandingPage from '../components/landingPage';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (

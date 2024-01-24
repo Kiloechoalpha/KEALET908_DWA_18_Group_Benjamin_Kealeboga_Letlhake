@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const FavoriteButton = ({ show }) => {
   const [favorites, setFavorites] = React.useState([]);
@@ -29,6 +30,12 @@ const FavoriteButton = ({ show }) => {
       )}
     </div>
   );
+};
+
+FavoriteButton.propTypes = {
+  show: PropTypes.shape({
+    id: PropTypes.number.isRequired, // Adjust the type accordingly
+  }).isRequired,
 };
 
 export default FavoriteButton;

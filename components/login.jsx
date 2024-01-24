@@ -1,13 +1,14 @@
-import React from 'react';
 import { supabase } from '../src/supabase';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { Auth } from '@supabase/auth-ui-react';
-// import { Link } from 'react-router-dom';
 
 
 const Login = () => {
+  const handleLogin = (session) => {
+    // Your handleLogin implementation
+    console.log('User logged in:', session.user);
+  };
 
-  
   const handleSession = (session) => {
     if (session?.user) {
       handleLogin(session);
@@ -15,24 +16,18 @@ const Login = () => {
   };
 
   return (
- 
-    <div className="login">       
-    <header className="App-Header">   
-        
-    <Auth           
-    supabaseClient={supabase}           
-    appearance={{ theme: ThemeSupa }}           
-    theme="dark"           
-    providers={['google']}           
-    handleSession={handleSession} // Call handleLogin when the session is available        
-     /> 
-           
-    </header>  
-   
-    </div> 
-   
-    );
-  
+    <div className="login">
+      <header className="App-Header">
+        <Auth
+          supabaseClient={supabase}
+          appearance={{ theme: ThemeSupa }}
+          theme="dark"
+          providers={['google']}
+          handleSession={handleSession}
+        />
+      </header>
+    </div>
+  );
 };
 
 export default Login;

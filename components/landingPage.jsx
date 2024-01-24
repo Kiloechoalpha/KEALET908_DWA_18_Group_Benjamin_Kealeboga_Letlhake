@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Login from './login';
 
 const genreMapping = {
@@ -29,7 +29,7 @@ const LandingPage = () => {
   const [shows, setShows] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [filter, setFilter] = React.useState('A-Z'); // Default filter set to A-Z
-  const [genresFilter, setGenresFilter] = React.useState(null);
+  const [genresFilter] = React.useState(null);
 
   React.useEffect(() => {
     // Fetch the list of shows from the API
@@ -120,7 +120,6 @@ const LandingPage = () => {
                     <li className="list-group-item">Last Updated: {formatUpdatedAt(show.updated)}</li>
                     <li className="list-group-item">Genres: {show.genres.map((genreId) => genreMapping[genreId]).join(', ')}</li>
                   </ul>
-                  {/* Add any other necessary components or actions */}
                 </div>
               </div>
             ))}

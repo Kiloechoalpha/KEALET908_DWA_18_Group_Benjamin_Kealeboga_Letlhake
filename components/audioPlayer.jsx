@@ -1,12 +1,10 @@
-
-
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 function AudioPlayer() {
   const [season, setSeason] = useState({});
   const [loading, setLoading] = useState(true);
-  const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
+  const [currentlyPlaying] = useState(null);
 
   const params = useParams();
 
@@ -23,9 +21,7 @@ function AudioPlayer() {
       });
   }, [params.id]);
 
-  const handlePlayback = (episode) => {
-    setCurrentlyPlaying(episode);
-  };
+
 
   return (
     <div>
