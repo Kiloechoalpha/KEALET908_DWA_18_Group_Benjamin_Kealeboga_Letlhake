@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Login from './login';
 
+// Mapping of genre IDs to their corresponding names
 const genreMapping = {
   1: "Personal Growth",
   2: "True Crime and Investigative Journalism",
@@ -14,6 +15,7 @@ const genreMapping = {
   9: "Kids and Family",
 };
 
+// Function to format the last updated date
 const formatUpdatedAt = (dateString) => {
   const date = new Date(dateString);
   const formattedDate = date.toLocaleDateString(undefined, {
@@ -24,15 +26,17 @@ const formatUpdatedAt = (dateString) => {
   return formattedDate;
 };
 
+// LandingPage component
 const LandingPage = () => {
+  // State variables
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [shows, setShows] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [filter, setFilter] = React.useState('A-Z'); // Default filter set to A-Z
   const [genresFilter] = React.useState(null);
 
+  // Fetch shows from the API when the component mounts
   React.useEffect(() => {
-    // Fetch the list of shows from the API
     fetch('https://podcast-api.netlify.app/shows')
       .then((response) => response.json())
       .then((data) => {
@@ -45,10 +49,12 @@ const LandingPage = () => {
       });
   }, []);
 
+  // Function to handle changes in the filter
   const handleFilterChange = (selectedFilter) => {
     setFilter(selectedFilter);
   };
 
+  // Function to sort shows based on the selected filter
   const sortShows = (a, b) => {
     if (filter === 'A-Z') {
       return a.title.localeCompare(b.title);
@@ -62,14 +68,17 @@ const LandingPage = () => {
     return 0;
   };
 
+  // Filter the shows based on the selected genre (if any)
   const displayedShows = genresFilter
     ? shows.filter((show) => show.genres.includes(genresFilter))
     : shows;
 
+  // Render loading message while data is being fetched
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  // Render the main content when the user is logged in
   return (
     <>
       {!isLoggedIn ? (
@@ -79,6 +88,7 @@ const LandingPage = () => {
           <h2>All Shows</h2>
           <div className="row mb-3">
             <div className="col">
+              {/* Filter and genre buttons */}
               <div className="btn-group me">
                 <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Order: {filter}
@@ -90,24 +100,21 @@ const LandingPage = () => {
                   <button className="dropdown-item" type="button" onClick={() => handleFilterChange('descending')}>Old Shows</button>
                 </div>
                 <div className="ms-2">
-                  <Link to="?genres=1" className="btn btn-outline-secondary rounded-pill me-2">Personal Growth</Link>
-                  <Link to="?genres=2" className="btn btn-outline-secondary rounded-pill me-2">Crime & Journalism</Link>
-                  <Link to="?genres=3" className="btn btn-outline-secondary rounded-pill me-2">History</Link>
-                  <Link to="?genres=4" className="btn btn-outline-secondary rounded-pill me-2">Comedy</Link>
-                  <Link to="?genres=5" className="btn btn-outline-secondary rounded-pill me-2">Entertainment</Link>
-                  <Link to="?genres=6" className="btn btn-outline-secondary rounded-pill me-2">Business</Link>
-                  <Link to="?genres=7" className="btn btn-outline-secondary rounded-pill me-2">Fiction</Link>
-                  <Link to="?genres=8" className="btn btn-outline-secondary rounded-pill me-2">News</Link>
-                  <Link to="?genres=9" className="btn btn-outline-secondary rounded-pill me-2">Kids and Family</Link>
+                  {/* Genre filter buttons */}
+                  {Object.entries(genreMapping).map(([genreId, genreName]) => (
+                    <Link key={genreId} to={`?genres=${genreId}`} className="btn btn-outline-secondary rounded-pill me-2">{genreName}</Link>
+                  ))}
                   <Link to="." className="btn btn-secondary rounded-pill me-2">Clear</Link>
                 </div>
               </div>
             </div>
           </div>
+          {/* Display the shows */}
           <div className="row">
             {displayedShows.sort(sortShows).map((show) => (
               <div key={show.id} className="col-md-3 mb-4">
                 <div className="card" style={{ width: '18rem' }}>
+                  {/* Link to individual show page */}
                   <Link className="link-underline link-underline-opacity-0" to={`/${show.id}`}>
                     <img src={show.image} alt={show.title} className="card-img-top" />
                   </Link>
