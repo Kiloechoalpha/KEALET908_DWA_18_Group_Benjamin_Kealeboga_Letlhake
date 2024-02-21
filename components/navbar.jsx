@@ -49,7 +49,7 @@ export default function Navbar() {
                  Login
                 </Link>
               </li>
-              <DropdownItem title="⭐" items={['All Favorites', 'New Favorites', 'Old Favorites']} />
+              <DropdownItem title="⭐ Favorites" items={['All Favorites', 'New Favorites', 'Old Favorites']} />
               
             </ul>
             <form className="d-flex">
