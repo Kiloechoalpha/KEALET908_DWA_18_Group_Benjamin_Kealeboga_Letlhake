@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import RandomImageCarousel from './randomImageCarousel';
-import FavoriteButton from './favoriteButton';
+// import FavoriteButton from './favoriteButton';
 
 // Genre mapping for displaying genre names
 const genreMapping = {
@@ -88,7 +88,7 @@ const Home = () => {
         <h2>All Shows</h2>
         <div className="row">
           {displayedShows.sort(sortShows).map((show) => (
-            <div key={show.id} className="col-md-3 mb-4">
+            <div key={show.id} className="col-md-4 mb-2">
               <div className="card" style={{ width: '18rem' }}>
                 {/* Link to the show's details page */}
                 <Link className="link-underline link-underline-opacity-0" to={`/${show.id}`}>
@@ -106,7 +106,7 @@ const Home = () => {
                   <li className="list-group-item">Genres: {show.genres.map(genreId => genreMapping[genreId]).join(', ')}</li>
                 </ul>
                 {/* Favorite button component */}
-                <FavoriteButton show={show} />
+                {/* <FavoriteButton show={show} /> */}
               </div>
             </div>
           ))}
