@@ -86,31 +86,31 @@ const Home = () => {
       <RandomImageCarousel />
       <div className="container">
         <h2>All Shows</h2>
-        <div className="row">
-          {displayedShows.sort(sortShows).map((show) => (
-            <div key={show.id} className="col-md-4 mb-2">
-              <div className="card" style={{ width: '18rem' }}>
-                {/* Link to the show's details page */}
-                <Link className="link-underline link-underline-opacity-0" to={`/${show.id}`}>
-                  <img src={show.image} alt={show.title} className="card-img-top" />
-                </Link>
-                <div className="card-body">
-                  <h5 className="card-title">{show.title}</h5>
-                  {/* Show description with character limit */}
-                  <p className="card-text">{show.description.length > 100 ? show.description.slice(0, 100) + '...' : show.description}</p>
-                </div>
-                <ul className="list-group list-group-flush">
-                  {/* Show details: Seasons, Last Updated, Genres */}
-                  <li className="list-group-item">Seasons: {show.seasons}</li>
-                  <li className="list-group-item">Last Updated: {formatUpdatedAt(show.updated)}</li>
-                  <li className="list-group-item">Genres: {show.genres.map(genreId => genreMapping[genreId]).join(', ')}</li>
-                </ul>
-                {/* Favorite button component */}
-                {/* <FavoriteButton show={show} /> */}
-              </div>
-            </div>
-          ))}
+        <div className="row row-cols-1 row-cols-md-3 g-4">
+  {displayedShows.sort(sortShows).map((show) => (
+    <div key={show.id} className="col">
+      <div className="card h-100 d-flex flex-column">
+        {/* Link to the show's details page */}
+        <Link className="link-underline link-underline-opacity-0" to={`/${show.id}`}>
+          <img src={show.image} alt={show.title} className="card-img-top" />
+        </Link>
+        <div className="card-body d-flex flex-column">
+          <h5 className="card-title">{show.title}</h5>
+          {/* Show description with character limit */}
+          <p className="card-text flex-grow-1">{show.description.length > 100 ? show.description.slice(0, 100) + '...' : show.description}</p>
+          <ul className="list-group list-group-flush mt-auto">
+            {/* Show details: Seasons, Last Updated, Genres */}
+            <li className="list-group-item">Seasons: {show.seasons}</li>
+            <li className="list-group-item">Last Updated: {formatUpdatedAt(show.updated)}</li>
+            <li className="list-group-item">Genres: {show.genres.map(genreId => genreMapping[genreId]).join(', ')}</li>
+          </ul>
+          {/* Favorite button component */}
+          {/* <FavoriteButton show={show} /> */}
         </div>
+      </div>
+    </div>
+  ))}
+</div>
       </div>
     </>
   );
