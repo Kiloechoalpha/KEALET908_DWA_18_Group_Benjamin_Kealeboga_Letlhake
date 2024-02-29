@@ -31,8 +31,8 @@ const RandomImageCarousel = () => {
       <div className="carousel-inner">
         {images.map((imageItem, index) => (
           <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-            <img src={imageItem.image} className="d-block w-100 img-fluid" alt={`Slide ${index}`} />
-            <div className="carousel-caption d-none d-md-block">
+             <img src={imageItem.image} className="d-block img-fluid mx-auto" alt={`Slide ${index}`} style={{ maxWidth: '800px', maxHeight: '600px' }} />
+            <div className="carousel-caption text-dark bg-light rounded p-2">
               <h5>{imageItem.title}</h5>
             </div>
           </div>
