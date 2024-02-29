@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <navbar>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top rounded">
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -49,7 +49,7 @@ export default function Navbar() {
                  Login
                 </Link>
               </li>
-              <DropdownItem title="⭐ Favorites" items={['All Favorites', 'New Favorites', 'Old Favorites']} />
+              <DropdownItem title="Favorites" items={['All Favorites', 'New Favorites', 'Old Favorites']} />
               
             </ul>
             <form className="d-flex">
