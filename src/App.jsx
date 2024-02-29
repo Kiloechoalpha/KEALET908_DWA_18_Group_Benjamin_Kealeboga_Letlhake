@@ -14,16 +14,18 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Show" element={<Show />} />
-        <Route path="/Season" element={<Season />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/:id" element={<ShowDetails />} />
-        <Route path="/showPreview/:id" element={<SeasonList/>} />
-        <Route path="/seasonList/:id" element={<AudioPlayer/>} />
-        <Route path="/landingPage" element={<LandingPage/>} />
-      </Routes>
+      <br />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Show" element={<Show />} />
+          <Route path="/Season" element={<Season />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/:id" element={<ShowDetails />} />
+          <Route path="/showPreview/:id" element={<SeasonList/>} />
+          <Route path="/seasonList/:id" element={<AudioPlayer/>} />
+          <Route path="/landingPage" element={<LandingPage/>} />
+        </Routes>
+    
     </BrowserRouter>
   );
 }
