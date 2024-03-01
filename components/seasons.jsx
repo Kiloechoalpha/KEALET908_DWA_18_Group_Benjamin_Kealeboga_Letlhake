@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+// Component for displaying all seasons
 const Seasons = () => {
-  const [shows, setShows] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [sortOption, setSortOption] = useState('A-Z');
+  // State variables for storing seasons data and loading status
+  const [shows, setShows] = useState([]); // State for storing seasons data
+  const [loading, setLoading] = useState(true); // State for loading status
+  const [sortOption, setSortOption] = useState('A-Z'); // State for sorting option
 
+  // Fetch seasons data from API when component mounts
   useEffect(() => {
-    // Fetch the list of shows from the API
     fetch('https://podcast-api.netlify.app/shows')
       .then((response) => response.json())
       .then((data) => {
@@ -20,6 +22,7 @@ const Seasons = () => {
       });
   }, []);
 
+  // Function to sort seasons based on selected option
   const sortSeasons = (option) => {
     setLoading(true);
     let sortedShows = [...shows];
@@ -44,13 +47,16 @@ const Seasons = () => {
     setSortOption(option);
   };
 
+  // Render loading state while fetching data
   if (loading) {
     return <div>Loading Seasons...</div>;
   }
 
+  // Render seasons list
   return (
     <div className="container">
       <h2>All Seasons</h2>
+      {/* Sorting buttons */}
       <div className="d-flex mb-4">
         <button
           className={`btn btn-sm mr-2 ${sortOption === 'A-Z' && 'btn-primary'}`}
@@ -77,17 +83,23 @@ const Seasons = () => {
           Sort by Recently Updated
         </button>
       </div>
+      {/* Seasons cards */}
       <div className="row">
         {shows.map((show) => (
           <div key={show.id} className="col-md-3 mb-4">
             <div className="card" style={{ width: '18rem' }}>
+              {/* Link to individual season */}
               <Link className="link-underline link-underline-opacity-0" to={`/${show.id}`}>
+                {/* Season image */}
                 <img src={show.image} alt={show.title} className="card-img-top" />
+                {/* Season title */}
                 <div className="card-body">
                   <h5 className="card-title">{show.title}</h5>
                 </div>
               </Link>
+              {/* Link to show page */}
               <Link className="link-underline link-underline-opacity-0" to={`/show`}>
+                {/* Number of seasons */}
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item">Seasons: {show.seasons}</li>
                 </ul>
